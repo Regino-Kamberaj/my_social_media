@@ -27,7 +27,7 @@ DEBUG = False
 
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://mysocialmedia-production.up.railway.app/'
+    'https://mysocialmedia-production.up.railway.app/',
 ]
 
 ALLOWED_HOSTS = ['mysocialmedia-production.up.railway.app']
