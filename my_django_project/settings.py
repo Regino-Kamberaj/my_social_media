@@ -27,10 +27,10 @@ DEBUG = False
 
 
 CSRF_TRUSTED_ORIGINS = [
-    'http://127.0.0.1:8000/',
+    'https://mysocialmedia-production.up.railway.app/',
 ]
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['mysocialmedia-production.up.railway.app/']
 
 # Application definition
 
