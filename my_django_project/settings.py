@@ -32,6 +32,19 @@ CSRF_TRUSTED_ORIGINS = [
 
 ALLOWED_HOSTS = ['mysocialmedia-production.up.railway.app']
 
+CORS_ORIGIN_WHITELIST = [
+    'https://mysocialmedia-production.up.railway.app/',
+    'http://127.0.0.1:3000',
+]
+
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+]
 # Application definition
 
 INSTALLED_APPS = [
