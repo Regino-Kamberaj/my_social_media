@@ -27,7 +27,7 @@ DEBUG = True
 
 
 CSRF_TRUSTED_ORIGINS = [
-    'mysocialmedia-production.up.railway.app',
+    'https://mysocialmedia-production.up.railway.app/',
 ]
 
 ALLOWED_HOSTS = ['mysocialmedia-production.up.railway.app']
@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'social_media',
-    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -54,7 +53,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'my_django_project.urls'
