@@ -65,10 +65,11 @@ def home(request):
 
     suggestion_username_profile_list = list(chain(*username_profile_list))[:3]
 
+    # Per ogni utente guardo a quali post ha messo like
     user_likes = LikePost.objects.filter(username=user_object)
     user_likes_id = []
     for user_like in user_likes:
-        user_likes_id.append(user_like.post_id)
+        user_likes_id.append(user_like.post_id.id)
 
     context = {
         'user_profile': user_profile,
