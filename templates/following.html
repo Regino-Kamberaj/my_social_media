@@ -1,0 +1,229 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Following</title>
+    <link rel="stylesheet" href="{% static 'assets/css/icons.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/uikit.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/tailwind.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+
+            <header style="margin-top: -23px;">
+                <div class="header_inner">
+
+                    <div class="left-side">
+                        <!-- Logo -->
+                        <div id="logo" class=" ">
+                             <a href="/home">
+                                 <b><h4 style="font-size: 1.2rem;">Social Media Platform</h4></b>
+                             </a>
+
+                        </div>
+
+
+                    </div>
+
+                    <div class="right-side lg:pr-4">
+
+                        <!-- welcome user -->
+                        <a href="home/profile/{{ user.username }}" class="">
+                            Welcome <b class="">{{user.username | capfirst}}&nbsp; &nbsp; &nbsp;</b>
+                        </a>
+
+
+                        <!-- profile -->
+
+                        <a href="#">
+                            <img src="{{ user_profile.profile_img.url }}" class="header-avatar" alt="">
+                        </a>
+                        <div uk-drop="mode: click;offset:9" class="header_dropdown profile_dropdown border-t">
+                            <ul>
+                                <li><a href="/settings"> Account settings </a> </li>
+                                <li><a href="home/profile/{{ user.username }}">My profile </a> </li>
+                                <li><a href="/logout"> Log Out</a></li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </header>
+
+
+            <div style="margin-left: 250px; margin-right: 250px;">
+
+                <style>
+                body{margin-top:20px;
+                background-color: #eee;
+                }
+
+                .search-result-categories>li>a {
+                    color: #b6b6b6;
+                    font-weight: 400
+                }
+
+                .search-result-categories>li>a:hover {
+                    background-color: #ddd;
+                    color: #555
+                }
+
+                .search-result-categories>li>a>.glyphicon {
+                    margin-right: 5px
+                }
+
+                .search-result-categories>li>a>.badge {
+                    float: right
+                }
+
+                .search-results-count {
+                    margin-top: 10px
+                }
+
+                .search-result-item {
+                    padding: 20px;
+                    background-color: #fff;
+                    border-radius: 4px
+                }
+
+                .search-result-item:after,
+                .search-result-item:before {
+                    content: " ";
+                    display: table
+                }
+
+                .search-result-item:after {
+                    clear: both
+                }
+
+                .search-result-item .image-link {
+                    display: block;
+                    overflow: hidden;
+                    border-top-left-radius: 4px;
+                    border-bottom-left-radius: 4px
+                }
+
+                @media (min-width:768px) {
+                    .search-result-item .image-link {
+                        display: inline-block;
+                        margin: -20px 0 -20px -20px;
+                        float: left;
+                        width: 200px
+                    }
+                }
+
+                @media (max-width:767px) {
+                    .search-result-item .image-link {
+                        max-height: 200px
+                    }
+                }
+
+                .search-result-item .image {
+                    max-width: 100%
+                }
+
+                .search-result-item .info {
+                    margin-top: 2px;
+                    font-size: 12px;
+                    color: #999
+                }
+
+                .search-result-item .description {
+                    font-size: 13px
+                }
+
+                .search-result-item+.search-result-item {
+                    margin-top: 20px
+                }
+
+                @media (min-width:768px) {
+                    .search-result-item-body {
+                        margin-left: 200px
+                    }
+                }
+
+                .search-result-item-heading {
+                    font-weight: 400
+                }
+
+                .search-result-item-heading>a {
+                    color: #555
+                }
+
+                @media (min-width:768px) {
+                    .search-result-item-heading {
+                        margin: 0
+                    }
+                }
+                </style>
+
+                <div class="container">
+                <div class="row ng-scope">
+                    <div class="col-md-9 col-md-pull-3 mb-3">
+                         <div class="col-md-3 col-md-push-9">
+                        <h1 class="text-2xl"> <span class="fw-semi-bold"><b>Users That You Follow</b></span></h1>
+                        <br>
+                        </div>
+                        {% if following_profiles_list %}
+
+                            {% for user in following_profiles_list %}
+                            <section class="search-result-item">
+                                <a class="image-link" href="home/profile/{{user.user}}">
+                                     <img class="image" src="{{user.profile_img.url}}" alt="profile image">
+                                </a>
+
+                                    <div class="search-result-item-body">
+                                        <div class="row">
+
+                                            <div class="col-sm-9">
+                                                <h4 class="search-result-item-heading">
+                                                    <a href="home/profile/{{user.user}}">
+                                                        <b>@{{user.user}}</b>
+                                                    </a>
+                                                </h4>
+                                                <p class="info">{{user.location}}</p>
+                                                <p class="description">{{user.bio}}</p>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                            </section>
+                             {% endfor %}
+
+                        {% else %}
+
+                            <section class="search-result-item">
+                            <div class="row">
+                                <h1 class="text-3xl">You don't follow any user...</h1>
+                                <p>Follow more users!</p>
+                            </div>
+                            </section>
+                        {% endif %}
+
+
+                    </div>
+                </div>
+                </div>
+            </div>
+
+
+ <!-- Scripts
+    ================================================== -->
+    <script src="{% static 'assets/js/tippy.all.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'assets/js/uikit.js' %}"></script>
+    <script src="{% static 'assets/js/simplebar.js' %}"></script>
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+
+
+</body>
+
+
+</html>

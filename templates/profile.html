@@ -1,0 +1,166 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+	<title>Profile - {{user_profile.user.username | capfirst}}</title>
+    <link rel="stylesheet" href="{% static 'css/main.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/color.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+
+</head>
+<body>
+
+	<section>
+			<div class="feature-photo">
+				<figure>
+                    <img src="{% static 'images/resources/timeline-1.jpg' %}" alt="">
+                </figure>
+
+                <div class="add-btn mb-3">
+                        {% if user_object.username == user.username %}
+					    <span style="color: white; font-size: 27px;">
+                            <b>
+                            {% if user_post_length > 1%}
+                                {{ user_post_length }} Posts
+                            {% else %}
+                                {{ user_post_length }} Post
+                            {% endif %}
+                            </b>
+                        </span>
+
+                        <!-- number followers-->
+
+                        <a href="/view-followers">
+                            <span style="color: white; font-size: 27px;">
+                                <b>
+                                {% if user_followers > 1 %}
+                                 {{ user_followers}} followers
+                                {% else %}
+                                 {{ user_followers}} follower
+                                {% endif %}
+                                </b>
+                            </span>
+                        </a>
+
+                        <!-- number following -->
+                        <a href="/view-following">
+					        <span style="color: white; font-size: 27px;"><b>{{ user_following }} following</b></span>
+                         </a>
+
+                        <a href="/settings">
+                            <span style="color: white; font-size: 27px;"><b>Account Settings</b></span>
+                        </a>
+                        <form action="/follow" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" value="{{user.username}}" name="follower" />
+					    <input type="hidden" value="{{user_object.username}}" name="username" />
+
+
+					    {% else %}
+					    <a data-ripple=""><button type="submit" style="background-color: #ffc0cb;
+					    border: #ffc0cb;  padding: 10px; font-size: large">{{button_text}}</button></a>
+					    {% endif %}
+                        </form>
+					    </div>
+
+                <div class="container-fluid">
+                    <div class="row merged">
+                        <div class="col-lg-2 col-sm-3">
+                            <div class="user-avatar">
+                                <figure>
+                                    <a href="{{ user_profile.profile_img.url}}">
+                                        <img src="{{ user_profile.profile_img.url}}" style="height: 250px; width: 100%;" alt="profile image">
+                                    </a>
+                                    </figure>
+							</div>
+						</div>
+
+						<div class="col-lg-10 col-sm-9">
+							<div class="timeline-info">
+								<ul class="py-2">
+									<li class="admin-name">
+									  <h5 style="color: black;white-space: nowrap; width: 110px; font-size: 27px;">
+                                          <b>@{{user_profile.user.username | capfirst}}</b>
+                                          <i class="fa fa-check-circle" style="color: #48dbfb;" aria-hidden="true"></i>
+                                      </h5>
+									</li>
+								</ul>
+							</div>
+						</div>
+
+					</div>
+                    <div class="bio">
+                        <p style="font-size: large; color: black">{{ user_profile.bio }}</p>
+                    </div>
+				</div>
+
+
+			</div>
+    </section>
+
+	<section>
+		<div class="gap gray-bg">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="row" id="page-contents">
+                            <!-- sidebar -->
+							<div class="col-lg-3">
+                                <aside class="sidebar static">
+
+								</aside>
+							</div>
+
+                            <!-- centerl meta -->
+							<div class="col-lg-6">
+								<div class="central-meta">
+
+									<ul class="photos">
+                                        {% for post in user_posts %}
+										<li>
+											<a class="strip rounded-full" href="{{ post.image.url }}" title=""
+                                               data-strip-group="mygroup" data-strip-group-options="loop: false">
+												<img src="{{ post.image.url }}" style="height: 250px; width: 300px;" alt="">
+                                            </a>
+										</li>
+                                        {% endfor %}
+									</ul>
+                                    <!-- altra roba simpatica
+									<div class="loader">
+                                        <button class="btn-view btn-load-more"></button>
+                                    </div>
+                                    -->
+								</div>
+							</div>
+
+                            <!-- sidebar -->
+							<div class="col-lg-3">
+                                <aside class="sidebar static">
+
+								</aside>
+							</div>
+
+						</div>
+					</div>
+                    <span style="color: black; font-size: 27px; margin:auto;"><b><a title="Return to the main page" href="/home">Home</a></b></span>
+				</div>
+			</div>
+        </div>
+	</section>
+
+
+    <script src="{% static 'js/main.min.js' %}"></script>
+	<script src="{% static 'js/script.js' %}"></script>
+
+</body>
+
+
+</html>
