@@ -58,18 +58,18 @@
                         <a href="/settings">
                             <span style="color: white; font-size: 27px;"><b>Account Settings</b></span>
                         </a>
+                        {% else %}
                         <form action="/follow" method="POST">
+
                         {% csrf_token %}
-                        <input type="hidden" value="{{user.username}}" name="follower" />
-					    <input type="hidden" value="{{user_object.username}}" name="username" />
+                            <input type="hidden" value="{{user.username}}" name="follower" />
+					        <input type="hidden" value="{{user_object.username}}" name="username" />
 
-
-					    {% else %}
-					    <a data-ripple=""><button type="submit" style="background-color: #ffc0cb;
+					    <a data-ripple=" "><button type="submit" style="background-color: #ffc0cb;
 					    border: #ffc0cb;  padding: 10px; font-size: large">{{button_text}}</button></a>
-					    {% endif %}
                         </form>
-					    </div>
+                {% endif %}
+                </div>
 
                 <div class="container-fluid">
                     <div class="row merged">
