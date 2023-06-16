@@ -191,15 +191,14 @@
                     <a href="#" class="see-all">See all</a>
                 </div>
 
-
                 <!-- profile -->
                 <a href="#">
                     <img src="{{ user_profile.profile_img.url }}" class="header-avatar" alt="">
                 </a>
 
-                <div uk-drop="mode: click;offset:9" class="header_dropdown profile_dropdown border-t">
+                <div uk-drop="mode: click; offset:9" class="header_dropdown profile_dropdown border-t">
                     <ul>
-                        <li><a href="/settings"> Account settings </a> </li>
+                        <li class="py-12 px-5"><a href="/settings"> Account settings </a> </li>
                         <li><a href="#">Explore </a> </li> <!-- todo-->
                         <li><a href="profile/{{ user_profile.user }}"> My profile </a> </li>
                         <li><a href="/logout"> Log out</a></li>
