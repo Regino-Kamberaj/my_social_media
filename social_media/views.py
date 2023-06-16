@@ -30,7 +30,7 @@ def home(request):
         feed.append(feed_list) # ottengo così un queryset
 
     user_feed_list = list(chain(*feed))
-    user_feed_list.sort(key=lambda x: x.id)
+    user_feed_list.sort(key=lambda x: x.id) # ordino in base all'id degli user
 
 
     # Faccio vedere alcuni suggerimenti per l'utente
