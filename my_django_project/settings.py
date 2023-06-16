@@ -29,7 +29,7 @@ ALLOWED_HOSTS = ['mysocialmedia-app.up.railway.app',
                  '127.0.0.1']
 
 CSRF_TRUSTED_ORIGINS = [
-    'mysocialmedia-app.up.railway.app',
+    'https://mysocialmedia-app.up.railway.app',
 ]
 
 # Application definition
