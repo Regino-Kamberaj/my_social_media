@@ -24,17 +24,9 @@
                     <img src="{% static 'images/resources/timeline-1.jpg' %}" alt="">
                 </figure>
 
-                <div class="add-btn mb-3">
+                  <div class="add-btn mb-3">
                         {% if user_object.username == user.username %}
-					    <span style="color: white; font-size: 27px;">
-                            <b>
-                            {% if user_post_length > 1%}
-                                {{ user_post_length }} Posts
-                            {% else %}
-                                {{ user_post_length }} Post
-                            {% endif %}
-                            </b>
-                        </span>
+
 
                         <!-- number followers-->
 
@@ -59,17 +51,33 @@
                             <span style="color: white; font-size: 27px;"><b>Account Settings</b></span>
                         </a>
                         {% else %}
+                            <div style="display: inline-flex;">
+                         <span style="color: white; font-size: 27px; margin-top: 10px; margin-right: 20px">
+                            <b>
+                            {% if user_post_length > 1%}
+                                {{ user_post_length }} Posts
+                            {% else %}
+                                {{ user_post_length }} Post
+                            {% endif %}
+                            </b>
+                        </span>
+
                         <form action="/follow" method="POST">
 
                         {% csrf_token %}
                             <input type="hidden" value="{{user.username}}" name="follower" />
 					        <input type="hidden" value="{{user_object.username}}" name="username" />
-
-					    <a data-ripple=" "><button type="submit" style="background-color: #ffc0cb;
-					    border: #ffc0cb;  padding: 10px; font-size: large">{{button_text}}</button></a>
+                        <a>
+					        <button type="submit" style="padding: 10px; font-size: large">
+                            <span style="color: white; font-size: 27px;">{{button_text}}
+                            </span>
+                        </button>
+                        </a>
                         </form>
-                {% endif %}
-                </div>
+                        </div>
+                    {% endif %}
+
+                  </div>
 
                 <div class="container-fluid">
                     <div class="row merged">
