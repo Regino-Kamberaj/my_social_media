@@ -25,8 +25,9 @@ SECRET_KEY = 'django-insecure-94imr)0g$^!agi^p)$we%xauz@i=5ks0bsyz=reyn^a2j4_x3*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['mysocialmedia-app.up.railway.app',
-                 '127.0.0.1']
+ALLOWED_HOSTS = [
+    'mysocialmedia-app.up.railway.app'
+                 ]
 
 CSRF_TRUSTED_ORIGINS = [
     'https://mysocialmedia-app.up.railway.app',
